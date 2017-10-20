@@ -1,14 +1,28 @@
-document.observe("dom:loaded", function(){
-	cambiaColorT.delay(5);
-	$('titulo').observe('change', cambiaColorT);
-})
+//Función general que retraza el inicio del cambio de color del titulo
+$(function() {
+	//alert( "Ha ocurrido document.ready: documento listo" );
+	$("#titulo").delay(5000);
+	cambiaColorT1($("#titulo"));
+ });
 
-function cambiaColorT(){
-	titulo.addClassName('activo');
-	cambiaColorT2.delay(2);
+ //Primer color a asignar al titulo
+function cambiaColorT1(elemento){
+  $(elemento).animate(
+    {
+      color: "yellow"
+    }, 200, function(){
+      cambiaColorT2(elemento)
+    }
+  )
+}
+//Segundo color a asignar al titulo
+function cambiaColorT2(elemento){
+  $(elemento).animate(
+    {
+      color: "red"
+    }, 200, function(){
+      cambiaColorT1(elemento)
+    }
+  )
 }
 
-function cambiaColorT2(){
-	titulo.addClassName('activo2');
-	cambiaColorT.delay(2);
-}
